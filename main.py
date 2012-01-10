@@ -1,11 +1,27 @@
 #encoding: UTF-8
 """
-A sample e24PaymentPipe client for KNET. Use this as inspiration
-(or directly in your code) when you need to provide a KNET payment
-gateway for your application.
+    KNET Client
+    Copyright (C) 2012  Burhan Khalid <burhan.khalid@gmail.com>
 
-It has minimal requirements and is written in Flask using SQLAlchemy
-as the database ORM.
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
+
+    A sample e24PaymentPipe client for KNET. Use this as inspiration
+    (or directly in your code) when you need to provide a KNET payment
+    gateway for your application.
+
+    It has minimal requirements and is written in Flask using SQLAlchemy
+    as the database ORM.
 
 """
 

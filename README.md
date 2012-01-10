@@ -9,6 +9,8 @@ required.
 It also includes all the database fields that you need to store from KNET and what 
 you need to display in order to pass validation and testing.
 
+It is released under the GNU GPL License. See `license.txt` for more details.
+
 Notes
 =====
 
