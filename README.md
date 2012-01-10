@@ -29,6 +29,6 @@ Setup
 
 * Open a browser and go to `http://localhost:5000/1/123.456`
 
-# Your browser should redirect to KNET payment page
+* Your browser should redirect to KNET payment page
 
 
