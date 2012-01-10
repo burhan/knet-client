@@ -18,23 +18,24 @@ from flaskext.sqlalchemy import SQLAlchemy
 from knet.api import e24PaymentPipe as gw
 
 app = Flask(__name__)
+app.config.from_pyfile('settings.cfg')
 
 # Setting up a default database to be used for knet specific information
 # In production, you should probably change this to point to an existing database
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///knet.db'
-app.config['SECRET_KEY'] = 'changeme' # change this!
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///knet.db'
+#app.config['SECRET_KEY'] = 'changeme' # change this!
 db = SQLAlchemy(app)
 
 # Change these to match your server URLs
 # These are required for KNET, but can
 # be customized to your needs.
 
-ERROR_URL = 'http://127.0.0.1:5000/error/'
-SUCCESS_URL = 'http://127.0.0.1:5000/thank-you/'
-RESPONSE_URL = 'http://127.0.0.1:5000/result/'
+ERROR_URL = app.config['ERROR_URL']
+SUCCESS_URL = app.config['SUCCESS_URL']
+RESPONSE_URL = app.config['RESPONSE_URL']
 
-knet = gw('resource.cgn','alias')
+knet = gw('resource.cgn',app.config['KNET_ALIAS'])
 knet.ERROR_URL = ERROR_URL
 knet.RESPONSE_URL = RESPONSE_URL
 
@@ -164,6 +165,6 @@ def entry(id,trackingid=None,total=1.000,udf=None):
 
 if __name__ == '__main__':
     db.create_all() # This will reset and recreate the database on each restart of the system
-    app.run(host='0.0.0.0',debug=True)
+    app.run(debug=True)
 
 
