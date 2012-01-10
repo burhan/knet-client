@@ -19,8 +19,6 @@ Setup
 
 * Check out the source code and install the requirements as listed in `requirements.txt` file with `pip`:
 
-`$ virtualenv --no-site-packages myenv`
-
 `$ pip install -E myenv -r requirements.txt`
 
 * Place your `resource.cgn` file in the directory where you checked out the source
