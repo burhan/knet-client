@@ -51,9 +51,10 @@ ERROR_URL = app.config['ERROR_URL']
 SUCCESS_URL = app.config['SUCCESS_URL']
 RESPONSE_URL = app.config['RESPONSE_URL']
 
-knet = gw('resource.cgn',app.config['KNET_ALIAS'])
+knet = gw('resource.cgn', app.config['KNET_ALIAS'])
 knet.ERROR_URL = ERROR_URL
 knet.RESPONSE_URL = RESPONSE_URL
+
 
 class Transaction(db.Model):
     __tablename__ = 'KNET_TRANS'
@@ -68,35 +69,39 @@ class Transaction(db.Model):
     auth = db.Column(db.String(50))
     order_id = db.Column(db.String(50))
 
-    def __init__(self,tracking,order,total=1.000):
+    def __init__(self, tracking, order, total=1.000):
         self.tracking_id = tracking
         self.total = total
         self.order_id = order
 
     def __repr__(self):
-        return '<KNET R: {0} | T: {1} | O: {2}>'.format(self.payment_id,self.total,self.order_id)
+        return '<KNET R: {0} | T: {1} | O: {2}>'.format(self.payment_id, self.total, self.order_id)
 
 @app.route('/error/<pid>')
+@app.route('/error')
 def error(pid=None):
+    pid = request.args.get('PaymentID') or pid
     if pid:
         t = Transaction.query.filter_by(payment_id=pid).first()
         flash('Oops! There was an error with your payment!')
-        return render_template('error.html',t=t)
+        return render_template('error.html', t=t)
     else:
         return 'There was an error with your request'
+
 
 @app.route('/thank-you/<pid>')
 def thanks(pid):
     # Fetch the object for this payment ID
     if not pid:
-       return 'ERROR'
+        return 'ERROR'
     else:
-       t = Transaction.query.filter_by(payment_id=pid).first()
+        t = Transaction.query.filter_by(payment_id=pid).first()
 
     flash('Your payment was successful')
-    return render_template('thanks.html',t=t)
+    return render_template('thanks.html', t=t)
 
-@app.route('/result/',methods=['POST'])
+
+@app.route('/result/', methods=['POST'])
 def result():
     # Get the paymentid
     pid = request.form.get('paymentid')
@@ -110,7 +115,7 @@ def result():
     r = request.form.get('result')
 
     t.result = r
-    t.postdate = date(date.today().year,int(request.form.get('postdate')[:2]),int(request.form.get('postdate')[2:]))
+    t.postdate = date(date.today().year, int(request.form.get('postdate')[:2]), int(request.form.get('postdate')[2:]))
     t.transaction_id = request.form.get('tranid')
     t.tracking_id = request.form.get('trackid')
     t.reference = request.form.get('ref')
@@ -121,15 +126,15 @@ def result():
     db.session.commit()
 
     if r == unicode('CANCELLED') or r == unicode('NOT CAPTURED'):
-        return 'REDIRECT=%s%s' % (ERROR_URL,pid)
+        return 'REDIRECT=%s/%s' % (ERROR_URL, pid)
 
-    return 'REDIRECT=%s%s' % (SUCCESS_URL,pid)
+    return 'REDIRECT=%s%s' % (SUCCESS_URL, pid)
+
 
 @app.route('/<id>/<total>/<trackingid>/<udf>')
 @app.route('/<id>/<total>/<trackingid>/')
 @app.route('/<id>/<total>/')
-def entry(id,trackingid=None,total=1.000,udf=None):
-
+def entry(id, trackingid=None, total=1.000, udf=None):
     """
     This is the main entry point for the server, you pass it three things:
 
@@ -160,27 +165,25 @@ def entry(id,trackingid=None,total=1.000,udf=None):
     Restrictions - none of your fields can include the / character
     """
     # - Check if this order has already been paid
-    t = Transaction.query.filter_by(order_id=id,result='CAPTURED').first()
+    t = Transaction.query.filter_by(order_id=id, result='CAPTURED').first()
     if t is not None:
         return 'You have already paid for this order.'
 
     # 2 - Build and dispatch KNET URL
-    trackid = trackingid or '{0.year}{0.month}{0.day}-{1}-{0.hour}{0.minute}{0.second}'.format(datetime.now(),id)
+    trackid = trackingid or '{0.year}{0.month}{0.day}-{1}-{0.hour}{0.minute}{0.second}'.format(datetime.now(), id)
 
     knet.parse()
     if udf is not None:
-        udf = {'udf%s'%udf.find(x):x for x in udf if x is not ','}
-    payment_id,payment_url = knet.transaction(trackid,amount=total,udf=udf)
+        udf = {'udf%s' % udf.find(x): x for x in udf if x is not ','}
+    payment_id, payment_url = knet.transaction(trackid, amount=total, udf=udf)
 
     # Store information in DB
-    t = Transaction(trackid,id,total)
+    t = Transaction(trackid, id, total)
     t.payment_id = payment_id
     db.session.add(t)
     db.session.commit()
-    return redirect(payment_url+'?PaymentID='+payment_id)
+    return redirect(payment_url + '?PaymentID=' + payment_id)
 
 if __name__ == '__main__':
-    db.create_all() # This will reset and recreate the database on each restart of the system
+    db.create_all()  # This will reset and recreate the database on each restart of the system
     app.run(debug=True)
-
-
