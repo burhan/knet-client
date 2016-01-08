@@ -243,7 +243,7 @@ class e24PaymentPipe():
              Following characters are not allowed in UDF fields or trackid.
              For UDF fields, the code will do a simple substitution with "-",
              if you don't want this done, because you have already
-             taken care of this, call the method with 'filter=False'
+             taken care of this, call the method with 'filter_=False'
 
              Sym   Hex  Name
              ===============
