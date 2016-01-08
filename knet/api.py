@@ -202,7 +202,7 @@ class e24PaymentPipe():
             raise Exception(InvalidResponse)
 
 
-    def transaction(self, trackid, udf=None, amount=1.000, lang='ENG', currency=414, filter=True):
+    def transaction(self, trackid, udf=None, amount=1.000, lang='ENG', currency=414, filter_=True):
         """
 
            Main method to initiate a transaction request for the gateway.
@@ -216,7 +216,7 @@ class e24PaymentPipe():
 
              currency - ISO currency code, defaults to 414 for Kuwaiti Dinars
 
-             filter - Switch to filter UDF fields. Defaults to True
+             filter_ - Switch to filter UDF fields. Defaults to True
 
              udf - a dictionary object containing UDF fields for the
              transaction. See your gateway documentation on UDF fields. Format
@@ -282,7 +282,7 @@ class e24PaymentPipe():
 
         if udf is not None:
             keys = udf.keys()
-            if filter:
+            if filter_:
                 s = "~`!#$%^|\:'\"/"
                 trans = string.maketrans(s, ''.join(['-'] * len(s)))
                 for k in keys:
