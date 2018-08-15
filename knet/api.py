@@ -18,10 +18,10 @@
 
 """
 
-import cStringIO as StringIO
+from io import StringIO
 import itertools
 import zipfile
-import httplib
+import http.client
 import urllib
 import string
 
