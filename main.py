@@ -24,14 +24,14 @@
     as the database ORM.
 
 """
-
+import wsgiref
 from datetime import date
 from datetime import datetime
 from flask import Flask, request, redirect, render_template, flash
 from flask.helpers import url_for
-from flaskext.sqlalchemy import SQLAlchemy
-
+from flaskext.mysql import MySQL
 from knet.api import e24PaymentPipe as gw
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config.from_pyfile('settings.cfg')
