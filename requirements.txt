@@ -8,7 +8,7 @@ docutils==0.14
 Flask==1.0.2
 Flask-Mail==0.9.1
 Flask-MySQL==1.4.0
-Flask-SQLAlchemy==2.3.2
+Flask-SQLAlchemy==2.4.0
 idna==2.8
 itsdangerous==1.1.0
 Jinja2==2.10.1
