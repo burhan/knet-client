@@ -15,7 +15,7 @@ Jinja2==2.10.1
 lamson==1.3.4
 lockfile==0.12.2
 MarkupSafe==1.1.1
-mock==2.0.0
+mock==3.0.4
 nose==1.3.7
 pbr==5.1.3
 pycparser==2.19
