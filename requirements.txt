@@ -1,4 +1,4 @@
-asn1crypto==0.24.0
+asn1crypto==1.0.0
 blinker==1.4
 cffi==1.12.2
 chardet==3.0.4
