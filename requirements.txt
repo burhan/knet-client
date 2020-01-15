@@ -3,9 +3,9 @@ blinker==1.4
 cffi==1.12.2
 chardet==3.0.4
 click==7.0
+Flask==1.1.1
 cryptography==2.8
 docutils==0.16
-Flask==1.0.2
 Flask-Mail==0.9.1
 Flask-MySQL==1.4.0
 Flask-SQLAlchemy==2.4.1
