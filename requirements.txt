@@ -11,7 +11,7 @@ Flask-MySQL==1.4.0
 Flask-SQLAlchemy==2.4.1
 idna==2.8
 itsdangerous==1.1.0
-Jinja2==2.10.1
+Jinja2==2.11.2
 lamson==1.3.4
 lockfile==0.12.2
 MarkupSafe==1.1.1
