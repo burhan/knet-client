@@ -2,9 +2,9 @@ asn1crypto==1.3.0
 blinker==1.4
 cffi==1.14.2
 chardet==3.0.4
+cryptography==3.1
 click==7.1.2
 Flask==1.1.2
-cryptography==2.8
 docutils==0.16
 Flask-Mail==0.9.1
 Flask-MySQL==1.4.0
