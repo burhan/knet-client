@@ -1,5 +1,6 @@
 asn1crypto==1.4.0
 blinker==1.4
+chardet==4.0.0
 cffi==1.14.5
 chardet==3.0.4
 cryptography==3.4.6
