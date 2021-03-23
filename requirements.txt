@@ -7,7 +7,7 @@ click==7.1.2
 Flask==1.1.2
 docutils==0.16
 Flask-Mail==0.9.1
-Flask-MySQL==1.4.0
+Flask-MySQL==1.5.2
 idna==3.1
 Flask-SQLAlchemy==2.5.1
 itsdangerous==1.1.0
