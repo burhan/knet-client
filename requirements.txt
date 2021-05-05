@@ -23,6 +23,6 @@ PyMySQL==1.0.2
 pycparser==2.20
 python-daemon==2.3.0
 python-modargs==1.7
-six==1.15.0
+six==1.16.0
 SQLAlchemy==1.4.2
 Werkzeug==1.0.1
