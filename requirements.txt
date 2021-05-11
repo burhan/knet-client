@@ -5,7 +5,7 @@ cffi==1.14.5
 chardet==3.0.4
 cryptography==3.4.6
 click==7.1.2
-Flask==1.1.2
+Flask==2.0.0
 docutils==0.16
 Flask-Mail==0.9.1
 Flask-MySQL==1.5.2
