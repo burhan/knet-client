@@ -4,7 +4,7 @@ chardet==4.0.0
 cffi==1.14.5
 chardet==3.0.4
 cryptography==36.0.0
-click==8.0.3
+click==8.1.0
 Flask==1.1.2
 docutils==0.18.1
 Flask-Mail==0.9.1
