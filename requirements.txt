@@ -1,8 +1,9 @@
 asn1crypto==1.4.0
-blinker==1.5
-chardet==4.0.0
+chardet==5.0.0
 cffi==1.14.5
-chardet==3.0.4
+chardet==5.0.0
+blinker==1.5
+cffi==1.14.5
 cryptography==41.0.1
 click==8.0.3
 Flask==2.3.2
