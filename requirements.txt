@@ -26,5 +26,5 @@ python-daemon==3.0.1
 python-modargs==1.7
 six==1.16.0
 SQLAlchemy==2.0.15
-Werkzeug==2.3.4
+Werkzeug==2.3.6
 
