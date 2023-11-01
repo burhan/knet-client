@@ -2,7 +2,7 @@ asn1crypto==1.5.1
 chardet==5.1.0
 cffi==1.15.1
 chardet==5.1.0
-blinker==1.6.2
+blinker==1.7.0
 cffi==1.15.1
 cryptography==41.0.1
 click==8.1.3
